@@ -74,7 +74,3 @@
 * Create a CPU-heavy task and compare it with `setTimeout()` behavior.
 * Read 3 files asynchronously + use callbacks + print execution order.
 * Build a configurable calculator where operation function is passed dynamically.
-
-Run all programs in terminal using:
-
-node filename.js
