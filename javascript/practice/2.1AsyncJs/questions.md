@@ -24,7 +24,7 @@
 17. Reverse a number using loops.
 18. Find whether a number is prime.
 19. Count total prime numbers between 1 and `n`.
-20. Find the Fibonacci sequence till `n` terms.
+20. Find the sum of all prime numbers between 1 and `n`.
 
 ## Synchronous Code Practice
 
@@ -67,10 +67,3 @@
 48. Pass an anonymous function as an argument to another function.
 49. Create a function that takes another function and runs it after printing `"Executing..."`.
 50. Make a mini calculator where operation is decided by function argument and print the result.
-
-## Bonus Challenges
-
-* Read a file asynchronously, then after 2 seconds print `"Task Complete"`.
-* Create a CPU-heavy task and compare it with `setTimeout()` behavior.
-* Read 3 files asynchronously + use callbacks + print execution order.
-* Build a configurable calculator where operation function is passed dynamically.
