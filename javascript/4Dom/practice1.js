@@ -92,3 +92,14 @@
 //     ctr = ctr + 1
 // }
 
+/* 
+    Deleting elements
+        - removeChild - removes a specific node of a parent
+        - onclick - function that triggers whenever you click on a button
+*/
+
+// Assignment - Add a delete button right next to the todo that deletes that todo
+// function deleteTodo(index) {
+//     const element = document.getElementById("todo-" + index)
+//     element.parentNode.removeChild(element)
+// }

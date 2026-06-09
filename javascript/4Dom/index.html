@@ -7,9 +7,18 @@
 </head>
 <body>
     <h1>Todo List</h1>
-    <h4>1. Take class</h4>
-    <h4>2. Go out to eat</h4>
-    <h4>1</h4>
+    <div>
+        <div id="todo-1">
+            <h4>1. Take class</h4>
+            <button onclick="deleteTodo(1)">Delete</button>
+        </div>
+
+        <div id="todo-2">
+            <h4>2. Go out to eat</h4>
+            <button onclick="deleteTodo(2)">Delete</button>
+        </div>
+    </div>
+    
     <div>
         <input type="text" placeholder="Add your Todo here">
         <button id="btn" onclick="addTodo()">Add Todo</button>
