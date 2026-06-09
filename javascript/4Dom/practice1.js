@@ -103,3 +103,29 @@
 //     const element = document.getElementById("todo-" + index)
 //     element.parentNode.removeChild(element)
 // }
+
+/* 
+    Adding elements:
+
+    What we're learning
+        - createElement
+        - appendChlid
+*/
+
+/* 
+    Assignment - Write a function to add a TODO text to the list of todos
+
+    Steps-
+        1. Get the current text inside the input element
+        2. Create a new div element
+        3. Add the text from step 1 to the div element
+        4. Append the div to the todos list
+*/
+
+// function addTodo() {
+//     const inputEle = document.querySelector("#inp")
+//     const textNode = document.createElement("div")
+//     textNode.innerHTML = inputEle.value
+//     const parentEl = document.getElementById("todos")
+//     parentEl.appendChild(textNode)
+// }
