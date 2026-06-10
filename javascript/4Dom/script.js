@@ -1,22 +1,80 @@
-let ctr = 1
+let todos = []
 
 function addTodo() {
-    const inputEl = document.querySelector("input")
-    const value = inputEl.value
+    const input = document.querySelector("input")
 
-    const newDivEl = document.createElement("div")
+    if (input.value.trim() === "") return
 
-    newDivEl.setAttribute("id", ctr)
+    todos.push({
+        title: input.value
+    })
 
-
-    newDivEl.innerHTML = "<div>" +  value + "</div><button onclick='deleteTodo(" + ctr + ")'>delete</button>"
-
-    document.querySelector("body").appendChild(newDivEl)
-
-    ctr = ctr + 1
+    input.value = ""
+    render()
 }
 
-function deleteTodo(index) {
-    const element = document.getElementById(index)
-    element.parentNode.removeChild(element)
+function deleteLastTodo() {
+    todos.splice(todos.length - 1, 1) // removes last element from the array
+    render()
+}
+
+function deleteFirstTodo() {
+    todos.splice(0, 1)  // removes first element from the array
+    render()
+}
+
+function deleteTodoAt(index) {
+    todos.splice(index, 1)
+    render()
+}
+
+function editTodoAt(index) {
+    const updatedTitle = prompt(
+        "Edit Todo:",
+        todos[index].title
+    )
+
+    if (updatedTitle !== null && updatedTitle.trim() !== "") {
+        todos[index].title = updatedTitle
+        render()
+    }
+}
+
+function createTodoComponent(todo, index) {
+    const div = document.createElement("div")
+
+    const h1 = document.createElement("h1")
+    h1.innerText = todo.title
+
+    // Edit button
+    const editButton = document.createElement("button")
+    editButton.innerText = "Edit"
+
+    editButton.addEventListener("click", function () {
+        editTodoAt(index)
+    })
+
+    // Delete button
+    const deleteButton = document.createElement("button")
+    deleteButton.innerText = "Delete"
+
+    deleteButton.addEventListener("click", function () {
+        deleteTodoAt(index)
+    })
+
+    div.append(h1)
+    div.append(editButton)
+    div.append(deleteButton)
+
+    return div
+}
+
+function render() {
+    const todosContainer = document.querySelector("#todos")
+    todosContainer.innerHTML = ""
+
+    for (let i = 0; i < todos.length; i++) {
+        const element = createTodoComponent(todos[i], i)
+        todosContainer.appendChild(element)
+    }
 }
