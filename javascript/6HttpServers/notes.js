@@ -80,6 +80,7 @@
 */
 
 /* 
+    Methods
     HTTP methods are used to specifiy the type of action that the client wants to 
     perform on a resource on the server
     
