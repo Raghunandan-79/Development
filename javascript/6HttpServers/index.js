@@ -17,25 +17,40 @@ app.get('/', function(req, res) {
 app.post("/todos", function(req, res) {
     const todo = req.body.todo
 
+    if (!todo) {
+        res.status(400).json({
+            message: "Todo is required"
+        })
+        return
+    }
+    
     const file = __dirname + '/todo.json'
-    
-    let todos = []
-    
-    fs.writeFile(file, JSON.stringify([...todos, todo]), function(err) {
+
+    fs.readFile(file, function(err, data) {
         if (err) {
             console.log(err)
             res.status(500).json({
-                message: "Error writing to file"
+                message: "Error reading file"
             })
-        } else {
-            console.log("File written successfully")
         }
-    })
+        const todos = JSON.parse(data)
+        todos.push(todo)
 
-    res.json({
-        message: "Todo created successfully",
+        fs.writeFile(file, JSON.stringify(todos), function(err) {
+            if (err) {
+                console.log(err)
+                res.status(500).json({
+                    message: "Error writing file"
+                })
+            } else {
+                res.json({
+                    message: "Todo added successfully"
+                })
+            }
+        })
     })
 })
+
 
 // get todos
 app.get("/todos", function(req, res) {
