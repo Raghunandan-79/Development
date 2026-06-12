@@ -6,6 +6,7 @@ const app = express()
 app.use(express.json())
 
 const fs = require("fs")
+const path = require("path")
 
 // route handlers
 app.get('/', function(req, res) {
@@ -19,34 +20,40 @@ app.post("/todos", function(req, res) {
 
     if (!todo) {
         res.status(400).json({
-            message: "Todo is required"
+            postMessage: "Todo is required"
         })
+
         return
     }
-    
-    const file = __dirname + '/todo.json'
+
+    const file = path.join(__dirname, "todo.json")
 
     fs.readFile(file, function(err, data) {
         if (err) {
             console.log(err)
-            res.status(500).json({
-                message: "Error reading file"
+            postMessage: "Error reading the file"
+        }
+
+        const todos = JSON.parse(data)
+
+        if (todos.includes(todo)) {
+            return res.status(400).json({
+                postMessage: "Todo already exists"
             })
         }
-        const todos = JSON.parse(data)
+
         todos.push(todo)
 
         fs.writeFile(file, JSON.stringify(todos), function(err) {
             if (err) {
-                console.log(err)
                 res.status(500).json({
-                    message: "Error writing file"
-                })
-            } else {
-                res.json({
-                    message: "Todo added successfully"
+                    postMessage: "Error writing to file"
                 })
             }
+
+            res.json({
+                postMessage: "Todo added successfully"
+            })
         })
     })
 })
@@ -54,20 +61,51 @@ app.post("/todos", function(req, res) {
 
 // get todos
 app.get("/todos", function(req, res) {
-    const file = __dirname + '/todo.json'
-    
+    const file = path.join(__dirname, "todo.json")
+
     fs.readFile(file, function(err, data) {
         if (err) {
             console.log(err)
-            res.status(500).json({
-                message: "Error reading file"
-            })
-        } else {
-            const todos = JSON.parse(data)
             res.json({
-                todos
+                postMessage: "Error reading the file"
             })
         }
+
+        const todos = JSON.parse(data)
+
+        res.json({
+            todos
+        })
+    })
+})
+
+// delete all todos
+app.delete("/todos", function(req, res) {
+    const file = path.join(__dirname, "todo.json")
+
+    fs.readFile(file, function(err, data) {
+        if (err) {
+            console.log(err)
+            return res.status(500).json({
+                postMessage: "Error reqading the file"
+            })
+        }
+
+        const todos = JSON.parse(data)
+
+        todos.length = 0
+
+        fs.writeFile(file, JSON.stringify(todos), function(err) {
+            if (err) {
+                return res.status(500).json({
+                    postMessage: "Error writing to file"
+                })
+            }
+
+            res.status(200).json({
+                postMessage: "Deleted all todos"
+            })
+        })
     })
 })
 
