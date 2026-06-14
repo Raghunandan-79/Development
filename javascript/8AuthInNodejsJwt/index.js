@@ -49,9 +49,7 @@ app.post("/signin", (req, res) => {
 })
 
 function auth(req, res, next) {
-    const token = req.headers.token
-    const decodedData = jwt.verify(token, JWT_SECRET)
-    const username = decodedData.username
+    const username = req.username
 
     if (username) {
         req.username = username
