@@ -9,28 +9,23 @@ app.use(express.json())
 
 const users = []
 
-app.post("/signup", function(req, res) {
+app.post("/signup", (req, res) => {
     const username = req.body.username
     const password = req.body.password
-
-    if (users.find(u => u.username === username)) {
-        return res.json({
-            message: "User with username exits"
-        })
-    }
 
     users.push({
         username: username,
         password: password
     })
 
-    console.log(users)
     res.json({
-        message: "Signup complete"
+        message: "User signup sucessful"
     })
+
+    console.log(users)
 })
 
-app.post("/signin", function(req, res) {
+app.post("/signin", (req, res) => {
     const username = req.body.username
     const password = req.body.password
 
@@ -39,30 +34,38 @@ app.post("/signin", function(req, res) {
     )
 
     if (user) {
-        // Create a token
         const token = jwt.sign({
             username: username
         }, JWT_SECRET)
 
-        console.log(users)
-        
         res.json({
             token: token
         })
     } else {
-        return res.status(403).send({
-            message: "Invalid username or password" 
+        return res.status(400).send({
+            message: "Invalid username or password"
         })
     }
 })
 
-app.get("/me", (req, res) => {
-    const token = req.headers.token  // jwt
-    const decodedInformation = jwt.verify(token, JWT_SECRET) // json object
-    const username = decodedInformation.username
+function auth(req, res, next) {
+    const token = req.headers.token
+    const decodedData = jwt.verify(token, JWT_SECRET)
+    const username = decodedData.username
 
+    if (username) {
+        req.username = username
+        next()
+    } else {
+        res.status(400).json({
+            message: "You are not logged in"
+        })
+    }
+}
+
+function getDetailsHandler(req, res) {
     const user = users.find(
-        user => user.username === username
+        user => user.username === req.username
     )
 
     if (user) {
@@ -72,10 +75,12 @@ app.get("/me", (req, res) => {
         })
     } else {
         return res.status(400).send({
-            message: "Can't find the user"
+            message: "Invalid token"
         })
     }
-})
+}
+
+app.get("/me", auth, getDetailsHandler)
 
 app.listen(3000, () => {
     console.log(`Server running on port 3000`)
