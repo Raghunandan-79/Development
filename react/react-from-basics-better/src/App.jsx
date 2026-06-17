@@ -102,9 +102,6 @@
 // export default App
 
 
-
-// Below are all notes for this lecture
-
 // import React, { useState } from 'react'
 
 // const App = () => {
@@ -141,15 +138,57 @@
 // export default App
 
 
-import React from 'react'
+import React, { useState } from 'react'
+import PostComponent from './Post'
 
 const App = () => {
+  const [posts, setPosts] = useState([])
+
+  const postComponents = posts.map(post => <PostComponent 
+    name={post.name}
+    subtitle={post.subtitle}
+    image={post.image}
+    time={post.time}
+    description={post.description}
+  />)
+
+  function addPost() {
+    setPosts([...posts, {
+      name: "harkirat",
+      subtitle: "11000 followers",
+      time: "2m ago",
+      image: "https://harkirat.classx.co.in/harkirat.png",
+      description: "Want to know how to win big? Check out how these folks won $6000 in bounties"
+    }])
+  }
+
   return (
-    <div>App</div>
+    <div style={{
+      background: "#dfe6e9",
+      height: "100%",
+      paddingBottom: 30
+    }}>
+      <button onClick={addPost}>Add Post</button>
+
+      <div style={{
+        display: "flex",
+        justifyContent: "center"
+      }}>
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 10
+        }}>
+          {[postComponents]}
+        </div>
+      </div>
+    </div>
   )
 }
 
 export default App
+
+// Below are all notes for this lecture
 
 /* 
   Components:
