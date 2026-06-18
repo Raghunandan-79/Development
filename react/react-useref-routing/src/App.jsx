@@ -1,121 +1,96 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+/* 
+  Single page applications, routing 
+  Single Page Applications  (SPAs) are web applications that load a single HTML page
+  and dynamically update that page as the user interacts with the app. This 
+  approach allows for a smoother user experience compared to traditional multi-page
+  applications (MPAs), where each interaction often requires a full page reload
+*/
 
-function App() {
-  const [count, setCount] = useState(0)
+// import React from 'react'
+// import { BrowserRouter, Link, Outlet, Route, Routes, useNavigate } from 'react-router-dom'
 
+// const App = () => {
+//   return (
+//     <div>
+//       <BrowserRouter>
+//         <Routes>
+//           <Route path='/' element={<Layout />}>
+//             <Route path='/neet/online-coaching-class-11' element={<Class11Program />} />
+//             <Route path='/neet/online-coaching-class-12' element={<Class12Program />} />
+//             <Route path='/' element={<Landing />} />
+//             <Route path='*' element={<ErrorPage />} />
+//           </Route>
+//         </Routes>
+//       </BrowserRouter>
+//     </div>
+//   )
+// }
+
+// function Layout() {
+//   return <div>
+//     <Link to={"/"}>Home</Link> |
+//     <Link to={"/neet/online-coaching-class-11"}>Class 11</Link> |
+//     <Link to={"/neet/online-coaching-class-12"}>Class 12</Link>
+//     <Outlet />
+//     footer
+//   </div>
+// }
+
+// function ErrorPage() {
+//   return <div>
+//     Sorry page not found
+//   </div>
+// }
+
+// function Landing() {
+//   return <div>
+//     Welcome to allen
+//   </div>
+// }
+
+// function Class11Program() {
+//   return <div>
+//     NEET programs for Class 11
+//   </div>
+// }
+
+// function Class12Program() {
+//   // const navigate = useNavigate()
+
+//   // function redirectUser() {
+//   //   navigate("/")
+//   // }
+
+//   return <div>
+//     NEET programs for Class 12
+//     {/* <button onClick={redirectUser}>Go back to landing page</button> */}
+//   </div>
+// }
+
+// export default App
+
+/* 
+  useRef
+  What is useRef
+  In React, useRef is a hook that provides a way to create a reference to a value
+  or a DOM element that persists across renders but does not trigger a re-render
+  when the value changes
+
+  Key characteristics of useRef
+    1. Persistent Across Renders: The value stored in useRef persists between
+    component re-renders. This means the value of a ref does not get reset when
+    the component re-renders, unlike regular variables
+
+    2. No Re-Renders on change: Changing the value of a ref (ref.current) does not
+    cause a component to re-render. This is different from state(useState), which
+    triggers a re-render when updated
+*/
+
+import React from 'react'
+
+const App = () => {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+    <div>App</div>
   )
 }
 
