@@ -4,7 +4,7 @@ const App = () => {
   return (
     <>
       <div className='grid grid-row-3 sm:grid-cols-12'>
-        <div className='col-span-12 sm:col-span-4 bg-red-300'>
+        <div className='col-span-12 sm:col-span-4 bg-[#ff0000]'>
           Hi
         </div>
 
