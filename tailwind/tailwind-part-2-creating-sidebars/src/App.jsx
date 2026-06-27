@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import SidebarClass1 from './components/answers/1-basic-project'
+import Sidebar2Transitions from './sidebars/Sidebar2Transitions'
+import { Sidebar4 } from './sidebars/Sidebar4'
 
 const App = () => {
   return (
-    <div className='bg-blue-500'>
-      App
+    <div className='h-screen'>
+      {/* <SidebarClass1 /> */}
+      {/* <Sidebar2Transitions /> */}
+      <Sidebar4 />
     </div>
   )
 }
