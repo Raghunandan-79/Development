@@ -41,14 +41,17 @@ console.log(subtract(10, 5))
 greet1()
 
 function greet2(user: {
-    name: string,
+    firstName: string,
     age: number
 }): void {
-    console.log(`Hello ${user.name}`)
+    console.log(`Hello ${user.firstName}`)
 }
 
-let user = {
-    name: "Raghunandan Sharma",
+let user: {
+    firstName: string,
+    age: number
+} = {
+    firstName: "Raghunandan Sharma",
     age: 21
 }
 
