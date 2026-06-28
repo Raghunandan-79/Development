@@ -39,3 +39,17 @@ delayedCall(() => {
 console.log(subtract(10, 5))
 
 greet1()
+
+function greet2(user: {
+    name: string,
+    age: number
+}): void {
+    console.log(`Hello ${user.name}`)
+}
+
+let user = {
+    name: "Raghunandan Sharma",
+    age: 21
+}
+
+greet2(user)
