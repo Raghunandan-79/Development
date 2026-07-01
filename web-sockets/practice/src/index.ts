@@ -10,13 +10,9 @@ wss.on("listening", () => {
 
 // event handler
 wss.on("connection", (socket) => {
-    console.log("user connected");
-
-    setInterval(() => {
-        socket.send("Hello How are you ?");
-    }, 5000);
-
     socket.on("message", (e) => {
-        console.log(e.toString());
+        if (e.toString() === "ping") {
+            socket.send("pong");
+        }
     });
 });
