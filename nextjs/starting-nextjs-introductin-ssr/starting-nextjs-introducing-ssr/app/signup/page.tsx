@@ -1,5 +1,4 @@
-const Signup
- = () => {
+const Signup = () => {
   return (
     <div className="h-screen flex justify-center flex-col">
       <div className="flex justify-center">
@@ -58,5 +57,4 @@ function LabelledInput({ label, placeholder, type }: LabelledInputType) {
   );
 }
 
-export default Signup
-;
+export default Signup;
