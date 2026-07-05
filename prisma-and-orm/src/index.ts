@@ -43,16 +43,22 @@ app.post("/signup", async (req, res) => {
 
 app.get("/users", async (req, res) => {
   try {
-    const response = await client.user.findMany();
-    res.json({
-      response
-    })
-  } catch(e) {
+    const response = await client.user.findMany({
+      select: {
+        id: true,
+        username: true,
+        age: true,
+        city: true,
+        todos: true,
+      },
+    });
+    res.json(response);
+  } catch (e) {
     return res.status(500).json({
-      message: "Unable to find users"
-    })
+      message: "Unable to find users",
+    });
   }
-})
+});
 
 app.delete("/delete", async (req, res) => {
   const id = Number(req.query.id);
@@ -83,20 +89,20 @@ app.post("/updateUsername", async (req, res) => {
       where: {
         id: id,
       },
-      data: { 
-        username: username
-      }
-    })
-  } catch(e) {
+      data: {
+        username: username,
+      },
+    });
+  } catch (e) {
     return res.status(500).json({
-      message: "Error while updating the user"
-    })
+      message: "Error while updating the user",
+    });
   }
 
   res.json({
-    message: "Successfully updated the username"
-  })
-})
+    message: "Successfully updated the username",
+  });
+});
 
 async function main() {
   try {
